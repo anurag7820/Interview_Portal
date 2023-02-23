@@ -9,10 +9,9 @@ async function validate (start, end, id, name) {
     if (start === "00:00") start = "24:00";
     if (end === "00:00") end = "24:00";                                 
                                                          // Just For convienience
-    await Table.find({}, (err, data) => {                // We need to Use async keyword because This can take time ......
-        arr = data;
-    });
-
+    arr=await Table.find({});
+    
+   console.log(arr);
     if (arr.length <= 2) {
         return false;
     }

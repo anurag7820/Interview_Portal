@@ -6,9 +6,8 @@ const validate = async (id, name, origStart, origEnd, newStart, newEnd) => {
     let arr = [];
 
     // Just For convienience
-    await Table.find({}, (err, data) => { // We need to Use async keyword because This can take time ......
-        arr = data;
-    });
+    arr=await Table.find({});
+   
 
     let ok = false;
 
@@ -17,10 +16,14 @@ const validate = async (id, name, origStart, origEnd, newStart, newEnd) => {
 
         if (id === arr[i].id && name === arr[i].name) {
 
-            console.log(id, name, "    ", arr[i].id, arr[i].name, "\n\n");
-            console.log(origStart, "   ", origEnd, "   \n", arr[i].startTime, "   ", arr[i].endTime, "\n\n");
+            // console.log(id, name, "    ", arr[i].id, arr[i].name, "\n\n");
+            console.log(origStart);
+            console.log(origEnd);
+            console.log(arr[i].startTime);
+            console.log(arr[i].endTime);
 
             if ((arr[i].startTime === origStart && origEnd === arr[i].endTime)) {
+                console.log("correct");
                 ok = true;
             }
         }
@@ -56,11 +59,12 @@ route.post('/', async (req, res, next) => {
 
     let name = req.body.name;
     let id = parseInt(req.body.id);
-    let oriStart = req.body.origStart + "";
+    let oriStart = req.body.origStart;
     let oriEnd = req.body.origEnd;
     let newStart = req.body.newStart;
     let newEnd = req.body.newEnd;
-
+  
+    
     const check = await validate(id, name, oriStart, oriEnd, newStart, newEnd);
 
     if (check === 2) {
@@ -90,7 +94,7 @@ route.post('/', async (req, res, next) => {
 
     try {
 
-        await Table.updateOne({
+        Table.updateOne({
                 name: name,
                 id: id,
                 startTime: oriStart,
