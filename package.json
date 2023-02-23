@@ -1,4 +1,13 @@
 {
+
+  "name": "Interview_Portal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "node server.js"
+  },
   "dependencies": {
     "body-parser": "^1.20.2",
     "dotenv": "^16.0.3",
