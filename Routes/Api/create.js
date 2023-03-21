@@ -46,7 +46,7 @@ route.post('/', async (req, res, next) => {
 
     if (check === false) {
         res.render('failure', {
-            message: `Sorry ${name} is already enrolled in an interview at that time, Please pick some different other Slot!`
+            message: `Sorry ${name}, someone is already enrolled in an interview at that time, Please pick some different other Slot!`
         });
         return;
     }
